@@ -43,10 +43,12 @@ public class SplitfileProgressEvent implements ClientEvent {
 			int minSuccessFetchBlocks, boolean finalizedTotal) {
 		this.totalBlocks = totalBlocks;
 		this.succeedBlocks = succeedBlocks;
-		this.latestSuccess = (Date)latestSuccess.clone(); // clone() because Date is mutable.
+		// clone() because Date is mutable.
+		this.latestSuccess = latestSuccess != null ? (Date)latestSuccess.clone() : null; 
 		this.failedBlocks = failedBlocks;
 		this.fatallyFailedBlocks = fatallyFailedBlocks;
-		this.latestFailure = (Date)latestFailure.clone(); // clone() because Date is mutable.
+		// clone() because Date is mutable.
+		this.latestFailure = latestFailure != null ? (Date)latestFailure.clone() : null;
 		this.minSuccessfulBlocks = minSuccessfulBlocks;
 		this.finalizedTotal = finalizedTotal;
 		this.minSuccessFetchBlocks = minSuccessFetchBlocks;

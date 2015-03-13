@@ -69,10 +69,14 @@ public abstract class RequestStatus implements Cloneable {
 		this.totalBlocks = total;
 		this.minBlocks = min;
 		this.fetchedBlocks = fetched;
-		this.latestSuccess = (Date)latestSuccess.clone(); // clone() because Date is mutable
+        // clone() because Date is mutable
+		this.latestSuccess
+		    = latestSuccess != null ? (Date)latestSuccess.clone() : null;
 		this.fatallyFailedBlocks = fatal;
 		this.failedBlocks = failed;
-		this.latestFailure = (Date)latestFailure.clone(); // clone() because Date is mutable
+        // clone() because Date is mutable
+		this.latestFailure
+		    = latestFailure != null ? (Date)latestFailure.clone() : null;
 		this.isTotalFinalized = totalFinalized;
 		this.persistence = persistence;
 	}
@@ -110,7 +114,8 @@ public abstract class RequestStatus implements Cloneable {
 	}
 
 	public Date getLastActivity() {
-		return (Date)latestSuccess.clone(); // clone() because Date is mutable. 
+        // clone() because Date is mutable.
+        return latestSuccess != null ? (Date)latestSuccess.clone() : null;
 	}
 
 	/** Get the original URI for a fetch or the final URI for an insert. */
@@ -143,9 +148,11 @@ public abstract class RequestStatus implements Cloneable {
 	public synchronized void updateStatus(SplitfileProgressEvent event) {
 		this.failedBlocks = event.failedBlocks;
 		this.fatallyFailedBlocks = event.fatallyFailedBlocks;
-		this.latestFailure = (Date)event.latestFailure.clone(); // clone() because Date is mutable
+    	// clone() because Date is mutable
+		this.latestFailure = event.latestFailure != null ? (Date)event.latestFailure.clone() : null;
 		this.fetchedBlocks = event.succeedBlocks;
-		this.latestSuccess = (Date)event.latestSuccess.clone(); // clone() because Date is mutable
+        // clone() because Date is mutable
+		this.latestSuccess = event.latestSuccess != null ? (Date)event.latestSuccess.clone() : null;
 		this.isTotalFinalized = event.finalizedTotal;
 		this.minBlocks = event.minSuccessfulBlocks;
 		this.totalBlocks = event.totalBlocks;

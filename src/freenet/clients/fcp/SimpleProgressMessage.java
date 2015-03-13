@@ -35,9 +35,9 @@ public class SimpleProgressMessage extends FCPMessage {
 		fs.put("Required", event.minSuccessfulBlocks);
 		fs.put("Failed", event.failedBlocks);
 		fs.put("FatallyFailed", event.fatallyFailedBlocks);
-		fs.put("LatestFailure", event.latestFailure.getTime());
+		fs.put("LatestFailure", event.latestFailure != null ? event.latestFailure.getTime() : 0);
 		fs.put("Succeeded",event.succeedBlocks);
-		fs.put("LatestSuccess", event.latestSuccess.getTime());
+        fs.put("LatestSuccess", event.latestSuccess != null ? event.latestSuccess.getTime() : 0);
 		fs.put("FinalizedTotal", event.finalizedTotal);
 		if(event.minSuccessFetchBlocks != 0)
 			fs.put("MinSuccessFetchBlocks", event.minSuccessFetchBlocks);
@@ -73,7 +73,8 @@ public class SimpleProgressMessage extends FCPMessage {
 	}
 	
 	public Date getLatestSuccess() {
-	    return (Date)event.latestSuccess.clone(); // clone() because Date is mutable
+        // clone() because Date is mutable
+	    return event.latestSuccess != null ? (Date)event.latestSuccess.clone() : null;
 	}
 	
 	public double getFailedBlocks(){
@@ -85,7 +86,8 @@ public class SimpleProgressMessage extends FCPMessage {
 	}
 	
     public Date getLatestFailure() {
-        return (Date)event.latestFailure.clone(); // clone() because Date is mutable
+        // clone() because Date is mutable
+        return event.latestFailure != null ? (Date)event.latestFailure.clone() : null;
     }
 
 	public boolean isTotalFinalized() {
