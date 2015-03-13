@@ -31,7 +31,7 @@ import freenet.support.io.ResumeFailedException;
  * restarting downloads or losing uploads.
  */
 public abstract class ClientRequester implements Serializable, ClientRequestSchedulerGroup {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     private static volatile boolean logMINOR;
 	
 	static {
