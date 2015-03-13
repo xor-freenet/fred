@@ -37,7 +37,7 @@ public class SimpleProgressMessage extends FCPMessage {
 		fs.put("FatallyFailed", event.fatallyFailedBlocks);
 		fs.put("LatestFailure", event.latestFailure.getTime());
 		fs.put("Succeeded",event.succeedBlocks);
-		fs.put("LatestSuccess", event.latestFailure.getTime());
+		fs.put("LatestSuccess", event.latestSuccess.getTime());
 		fs.put("FinalizedTotal", event.finalizedTotal);
 		if(event.minSuccessFetchBlocks != 0)
 			fs.put("MinSuccessFetchBlocks", event.minSuccessFetchBlocks);
