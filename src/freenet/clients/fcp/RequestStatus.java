@@ -117,6 +117,11 @@ public abstract class RequestStatus implements Cloneable {
         // clone() because Date is mutable.
         return latestSuccess != null ? (Date)latestSuccess.clone() : null;
 	}
+	
+    public Date getLastFailure() {
+        // clone() because Date is mutable.
+        return latestFailure != null ? (Date)latestFailure.clone() : null;
+    }
 
 	/** Get the original URI for a fetch or the final URI for an insert. */
 	public abstract FreenetURI getURI();
