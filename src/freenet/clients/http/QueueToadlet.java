@@ -1355,11 +1355,17 @@ public class QueueToadlet extends Toadlet implements RequestCompletionCallback, 
 							result = Fields.compare(firstProgress, secondProgress);
 						}
 					} else if (sortBy.equals("lastActivity")) {
-                        result = firstRequest.getLastActivity()
-                                             .compareTo(secondRequest.getLastActivity());
+                        Date a = firstRequest.getLastActivity();
+                        Date b = secondRequest.getLastActivity();
+                        if(a == null) a = new Date(0);
+                        if(b == null) b = new Date(0);
+                        result = a.compareTo(b);
                     } else if (sortBy.equals("lastFailure")) {
-                        result = firstRequest.getLastFailure()
-                                             .compareTo(secondRequest.getLastFailure());
+                        Date a = firstRequest.getLastFailure();
+                        Date b = secondRequest.getLastFailure();
+                        if(a == null) a = new Date(0);
+                        if(b == null) b = new Date(0);
+                        result = a.compareTo(b);
 					}else
 						isSet=false;
 				}else
